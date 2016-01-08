@@ -9,9 +9,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		index.html = index.html
 	EndProjectSection
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Scripts", "Scripts", "{CC78BB90-CB90-4BC1-AB9A-1F595E67375D}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Scripts", "Scripts", "{30C8D799-3CCD-4983-B939-DB0625FC023A}"
 	ProjectSection(SolutionItems) = preProject
-		app.js = app.js
+		Scripts\app.js = Scripts\app.js
+		Scripts\articlesViewModel.js = Scripts\articlesViewModel.js
 	EndProjectSection
 EndProject
 Global
@@ -19,6 +20,6 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{CC78BB90-CB90-4BC1-AB9A-1F595E67375D} = {1B4AE5E3-18B0-49A1-AACB-A53589209647}
+		{30C8D799-3CCD-4983-B939-DB0625FC023A} = {1B4AE5E3-18B0-49A1-AACB-A53589209647}
 	EndGlobalSection
 EndGlobal
