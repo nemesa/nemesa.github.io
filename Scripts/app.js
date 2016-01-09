@@ -1,11 +1,23 @@
-var mainViewModel = function () {
+﻿var mainViewModel = function () {
     var self = this;
     self.title = 'Hello, world!';
+    self.templateEngine = new templateEngine();
+    self.initDone = self.templateEngine.setupDone;
+    self.articlesViewModel = new articlesViewModel();
+    self.initDone.subscribe(function(newValue) {
+        if (newValue) {
+            $('head').append('<script type="text/html" id="articlesView">' + self.templateEngine.getSystemTemplateContent("articlesView") + '</script>');
+        }
+    });
+
+    self.onTilteClick = function () {
+        if (window.location.href.indexOf('#') !== -1) {
+            window.location.href = window.location.href.substring(0, window.location.href.indexOf('#') + 1);
+        }
+        location.reload();
+    };
 };
 
 $(function () {
-    var t = $('#articlesView').load('articles.html');
-    //$('head').prepend('<script type="text/html" id="articlesView2" src="articles.html"><h1><!--ko text: title--><!--/ko--></h1></script>')
-
     ko.applyBindings(new mainViewModel());
 });

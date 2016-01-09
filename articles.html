@@ -1,4 +1,13 @@
-﻿
-    <div>
-        <h1><!--ko text: title--><!--/ko--></h1>
-    </div>
+﻿<div data-bind="visible:articleListVisible">
+    <ul data-bind="foreach:articlesToShow">
+        <li >
+            <h1 data-bind="text:title, click: onTitleClick" style="cursor: pointer"></h1>
+            <div data-bind="html: smallhtml">
+            </div>
+        </li>
+    </ul>
+</div>
+<!--ko if:articleReadVisible()-->
+<!--<h1 data-bind="click:onArticleReadBack" style="cursor: pointer">Back</h1>-->
+<div data-bind="html: actualArticle"></div>
+<!--/ko-->

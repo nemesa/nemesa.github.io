@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 <head>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
@@ -9,14 +9,19 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css">
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-    <script type="text/html" id="articlesView">
-    </script>
+    <script src="./Scripts/appSetup.js"></script>
+    <script src="./Scripts/articleModel.js"></script>
     <script src="./Scripts/articlesViewModel.js"></script>
     <script src="./Scripts/app.js"></script>
+    
 </head>
 <body id="main">
-<h1><!--ko text: title--><!--/ko--></h1>
+    <h1 data-bind="click:onTilteClick">nemesa.github.io</h1>
 <br/>
-<div data-bind='component: {name: "articles" }'></div>
+<!--ko if: initDone-->
+    <div data-bind="template: { name: 'articlesView', data: articlesViewModel }"></div>
+    <!--/ko-->
+    
+    <!--<div data-bind='component: {name: "articles" }'></div>-->
 </body>
 </html>
