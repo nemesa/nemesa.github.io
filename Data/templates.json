@@ -1,0 +1,5 @@
+﻿{
+  "systemTemplates": [
+      {"name": "articlesView", "templateSrc": "./Articles.html"}
+  ]
+}
