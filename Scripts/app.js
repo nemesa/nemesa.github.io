@@ -4,7 +4,7 @@ var mainViewModel = function () {
 };
 
 $(function () {
-    var t = $('head').load('articles.html');
+    var t = $('#articlesView').load('articles.html');
     //$('head').prepend('<script type="text/html" id="articlesView2" src="articles.html"><h1><!--ko text: title--><!--/ko--></h1></script>')
 
     ko.applyBindings(new mainViewModel());
