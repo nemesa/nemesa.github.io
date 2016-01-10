@@ -1,14 +1,10 @@
 ﻿[
   {
-    "smallTitle": "Arduino with CH340 chip",
     "url": "ArduinoWithCH340",
-    "smallhtml": "./Articles/0001ArduinoWithCH340_small.html",
     "html": "./Articles/0001ArduinoWithCH340.html"
   },
   {
-    "smallTitle": "HC-SR04 ultrasonic distance sensore",
     "url": "HC-SR04DistanceSensoreWithArduino",
-    "smallhtml": "./Articles/0002HC-SR04DistanceSensoreWithArduino_small.html",
     "html": "./Articles/0002HC-SR04DistanceSensoreWithArduino.html"
   }
 

@@ -14,7 +14,7 @@ var articlesViewModel = function() {
             console.log(textStatus + "|" + error);
         },
     });
-    self.articleListVisible = ko.observable(true);
+    /*self.articleListVisible = ko.observable(true);
     self.articleReadVisible = ko.observable(false);
 
 
@@ -39,13 +39,13 @@ var articlesViewModel = function() {
         self.articleListVisible(true);
         self.articleReadVisible(false);
         self.actualArticle('');
-    };
+    };*/
 
     self.articlesToShow = ko.pureComputed(function () {
         var articles = [];
 
         for (var i = 0; i < self.articlesData().length; i++) {
-            articles.push(new articleModel(self.articlesData()[i], self.onReadArticle));
+            articles.push(new articleModel(self.articlesData()[i]));
         }
         return articles;
     }, self);
