@@ -1,8 +1,15 @@
-﻿<div>
-    <ul data-bind="foreach:articlesToShow">
-        <li >
-            <div data-bind="html: html">
-            </div>
-        </li>
-    </ul>
+﻿<div class="container">
+    <div class="row" data-bind="foreach:articlesToShow">
+        <div data-bind="html: html">
+
+        </div>
+        <div class="row">
+            <br/>
+            <hr/>
+            <p class="text-right">
+                Date: <!--ko text: articleDate--> <!--/ko-->
+            </p>
+            <br />
+        </div>
+    </div>
 </div>

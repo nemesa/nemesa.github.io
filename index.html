@@ -9,19 +9,21 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css">
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <link href="./Content/style.css" rel="stylesheet" />
     <script src="./Scripts/appSetup.js"></script>
     <script src="./Scripts/articleModel.js"></script>
     <script src="./Scripts/articlesViewModel.js"></script>
     <script src="./Scripts/app.js"></script>
-    
+
 </head>
 <body id="main">
     <h1 data-bind="click:onTilteClick">nemesa.github.io</h1>
-<br/>
-<!--ko if: initDone-->
-    <div data-bind="template: { name: 'articlesView', data: articlesViewModel }"></div>
+    <br />
+    <!--ko if: initDone-->
+    <div class="container body-content">
+        <div data-bind="template: { name: 'articlesView', data: articlesViewModel }"></div>
+    </div>
     <!--/ko-->
-    
     <!--<div data-bind='component: {name: "articles" }'></div>-->
 </body>
 </html>

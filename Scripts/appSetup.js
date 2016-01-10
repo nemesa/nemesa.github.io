@@ -29,9 +29,10 @@
         return undefined;
     };
 
+    var date = new Date();
     self.getSystemTemplateContentResult = '';
     self.getSystemTemplateContent = function (templateName) {
-        var src = self.getSystemTempalteSrc(templateName);
+        var src = self.getSystemTempalteSrc(templateName) + "?time=" + date.getFullYear() + date.getMonth() + date.getDate() + date.getHours() + date.getMinutes() + date.getSeconds();
         var a = 'a';
         if (src) {
             $.ajax({

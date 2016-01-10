@@ -1,0 +1,103 @@
+﻿<div class="jumbotron">
+    <h2 class="list-group-item-heading">HC-SR04 ultrasonic distance sensor</h2>
+</div>
+<div class="row">
+    <div class="col-md-8 col-lg-8">
+        <p>
+            I bought a pair of this HC-SR04 for my “Table Soccer Occupied Indicator” project for my company’s hackathon (Creative Capital). Originally I planned to use this with a RaspberryPi, but I found out it is very easy to use with the Arduino platform too!
+            The HC-SR04 has 4 pins:
+            <ul>
+                <li>VCC - 5V input</li>
+                <li>Trig - Connect to digital a pin and send a HIGH for measure</li>
+                <li>Echo - Connect to digital a pin and wait for the incomeing signal</li>
+                <li>GND - Connect to groud</li>
+            </ul>
+            The instuctions in the specification of the HC-SR04 says:
+            Write LOW on both Echo and Trig for 2 milliseconds, than write a HIGH on the Trig pin for 10 milliseconds. Measure the time until the signal arrives on the Echo pin.
+
+        </p>
+    </div>
+    <div class="col-md-4 col-lg-4">
+        <img src="../Content/0002_1.jpg" width="300px;" height="190px;" />
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12 col-lg-12">
+        <p>You can connect it right into any Arduino, here is how I wired up mine for testing:</p>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-6 col-lg-6">
+        <img src="../Content/0002_2.jpg" width="500px;" />
+    </div>
+    <div class="col-md-6 col-lg-6">
+        <img src="../Content/0002_3.jpg" width="500px;" />
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12 col-lg-12">
+        <p>And I wrote a reusable <span class="highlightText">GetDistance</span> function what will do the pin setup and returns the distance in Cm:</p>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12 col-lg-12 arduinoCode">
+        #define&nbsp;HC_SR04_trigPin&nbsp;7<br />
+        #define&nbsp;HC_SR04_echoPin&nbsp;9<br />
+        <br />
+        <span class="blue">void&nbsp;</span><span class="green">setup</span>()&nbsp;{<br />
+        &nbsp;&nbsp;&nbsp;<span class="orange"><span class="bold">Serial</span>.begin</span>(9600);<br />
+        &nbsp;&nbsp;&nbsp;while&nbsp;(!<span class="orange bold">Serial</span>)&nbsp;{<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="gray">//&nbsp;wait&nbsp;for&nbsp;serial&nbsp;port&nbsp;to&nbsp;connect.&nbsp;Needed&nbsp;for&nbsp;native&nbsp;USB&nbsp;port&nbsp;only </span><br />
+    &nbsp;&nbsp;&nbsp;}<br />
+    &nbsp;&nbsp;&nbsp;<span class="orange"><span class="bold">Serial</span>.println</span>(<span class="blue">"Setup&nbsp;done"</span>);<br />
+    }<br />
+    <br />
+    <span class="blue">void&nbsp;</span><span class="green">loop</span>()&nbsp;{<br />
+    &nbsp;&nbsp;&nbsp;<span class="orange"><span class="bold">Serial</span>.println</span>(<span class="blue">"Get&nbsp;distance..."</span>);<br />
+    &nbsp;&nbsp;&nbsp;<span class="blue">long&nbsp;</span>distance&nbsp;=&nbsp;GetDistance(HC_SR04_trigPin,HC_SR04_echoPin);<br />
+    &nbsp;&nbsp;<br />
+    &nbsp;&nbsp;&nbsp;<span class="orange"><span class="bold">Serial</span>.print</span>(<span class="blue">"distance:&nbsp;"</span>);<br />
+    &nbsp;&nbsp;&nbsp;<span class="orange"><span class="bold">Serial</span>.print</span>(distance);<br />
+    &nbsp;&nbsp;&nbsp;<span class="orange"><span class="bold">Serial</span>.println</span>(<span class="blue">"&nbsp;cm"</span>);<br />
+    &nbsp;&nbsp;&nbsp;<span class="orange">delay</span>(5000);<br />
+    }<br />
+    <br />
+    <span class="blue">long&nbsp;</span>GetDistance(<span class="blue">int&nbsp;</span>triggerPin,&nbsp;<span class="blue">int&nbsp;</span>echoPin){<br />
+    &nbsp;&nbsp;&nbsp;<span class="orange">pinMode</span>(triggerPin,<span class="blue">OUTPUT</span>);<br />
+    &nbsp;&nbsp;&nbsp;<span class="orange">pinMode</span>(echoPin,<span class="blue">OUTPUT</span>);<br />
+    &nbsp;&nbsp;<br />
+    &nbsp;&nbsp;&nbsp;<span class="orange">digitalWrite</span>(echoPin,&nbsp;<span class="blue">LOW</span>);<br />
+    &nbsp;&nbsp;&nbsp;<span class="orange">digitalWrite</span>(triggerPin,&nbsp;<span class="blue">LOW</span>);<br />
+    &nbsp;&nbsp;&nbsp;<span class="orange">delay</span>Microseconds(2);<br />
+    &nbsp;&nbsp;<br />
+    &nbsp;&nbsp;&nbsp;<span class="orange">pinMode</span>(echoPin,INPUT);<br />
+    &nbsp;&nbsp;&nbsp;<span class="orange">digitalWrite</span>(triggerPin,&nbsp;<span class="blue">HIGH</span>);<br />
+    &nbsp;&nbsp;&nbsp;<span class="orange">delay</span>Microseconds(10);<br />
+    &nbsp;&nbsp;&nbsp;<span class="orange">digitalWrite</span>(triggerPin,&nbsp;<span class="blue">LOW</span>);<br />
+    &nbsp;&nbsp;<br />
+    &nbsp;&nbsp;&nbsp;<span class="blue">long&nbsp;</span>duration&nbsp;=&nbsp;<span class="orange">pulseIn</span>(echoPin,&nbsp;<span class="blue">HIGH</span>);<br />
+    &nbsp;&nbsp;&nbsp;<span class="blue">long&nbsp;</span>distance&nbsp;=&nbsp;(duration/2)&nbsp;/&nbsp;29.1;<br />
+    &nbsp;&nbsp;&nbsp;<span class="green">return</span>&nbsp;distance;<br />
+    }<br />
+</div>
+</div>
+<div class="row">
+    <div class="col-md-12 col-lg-12">
+        <p>Output should be something like:</p>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12 col-lg-12  arduinoCode">
+        <p>
+            Setup done<br />
+            Get distance...<br />
+            distance: 6 cm<br />
+            Get distance...<br />
+            distance: 6 cm<br />
+            Get distance...<br />
+            distance: 4 cm<br />
+            Get distance...<br />
+            distance: 7 cm<br />
+        </p>
+    </div>
+</div>
