@@ -13,8 +13,9 @@
                 <li>GND - Connect to groud</li>
             </ul>
             The instuctions in the specification of the HC-SR04 says:
-            Write LOW on both Echo and Trig for 2 milliseconds, than write a HIGH on the Trig pin for 10 milliseconds. Measure the time until the signal arrives on the Echo pin.
-
+            Write LOW on both Echo and Trig for 2 milliseconds, than write a HIGH on the Trig pin for 10 milliseconds. Measure the time until the signal arrives on the Echo pin.<br />
+            About the measurement: "You can calculate the range through the time interval between sending trigger signal and receiving echo signal. Formula: uS / 58 = centimeters or uS / 148 =inch; or: therange = high level time * velocity (340M/S) / 2"<br />
+            As I'm calculateing in centimeters I use the forumla: "uS / 58" -> distance = (duration/2) / 29.1
         </p>
     </div>
     <div class="col-md-4 col-lg-4">
